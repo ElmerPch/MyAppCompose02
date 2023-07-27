@@ -50,48 +50,89 @@ fun MyComplexLayout() {
 }
 
 @Composable
-fun MyColumn(){
-    Column(Modifier.fillMaxSize(), verticalArrangement= Arrangement.Center)
+fun MyColumn() {
+
+    var isVisible by remember {
+        mutableStateOf(false)
+    }
+    Column()
     {
         Text(text = "Ejemplo 1", modifier = Modifier.background(Color.Blue))
         Text(text = "Ejemplo 2", modifier = Modifier.background(Color.Green))
-
-        Box(modifier = Modifier
-            .background(Color.LightGray)
-            .width(200.dp)
-            .height(500.dp)
-            .padding(15.dp))
+        Row(modifier = Modifier.background(Color.Gray))
         {
-            var isVisible by remember {
-                mutableStateOf(false)
-            }
             Column()
             {
-                Text(text = "Ejemplo 4", modifier = Modifier.background(Color.Yellow))
+                Text(text = "Ejemplo 31", modifier = Modifier.background(Color.Yellow))
                 Button(onClick = {
-                    isVisible= !isVisible
+                    isVisible = !isVisible
                 }) {
-                    Text(text = "ClickMe2 Animated")
+                    Text(text = "ClickMe2 A")
                 }
-                Text(text = "Ejemplo 3", modifier = Modifier.background(Color.Red))
+                Text(text = "Ejemplo 32", modifier = Modifier.background(Color.Red))
                 Button(onClick = { /*TODO*/ }) {
                     Text(text = "ClickMe")
                 }
-                Image(painter= painterResource(id = R.drawable.ic_launcher_background), contentDescription="employee Image")
+                Image(
+                    painter = painterResource(id = R.drawable.ic_launcher_background),
+                    contentDescription = "employee Image"
+                )
             }
-            Column(modifier = Modifier.fillMaxWidth())
+            Column()
             {
                 Button(onClick = {
-                    isVisible= !isVisible
+                    isVisible = !isVisible
                 }) {
-                    Text(text = "Click Animated")
+                    Text(text = "Click Me B")
+
                 }
+
                 AnimatedVisibility(
-                    visible = isVisible,
-                    Modifier.fillMaxWidth().weight(1f)
+                    visible = isVisible
+                    //,
+                    // Modifier
+                    //.fillMaxSize()
+                    //    .weight(1f)
                 ) {
-                    Box(modifier =Modifier.background(Color.Red))
+                    Column(modifier = Modifier.width(100.dp))
+                    {
+                        Button(onClick = {
+                            isVisible = !isVisible
+                        }) {
+                            Text(text = "Click Ani")
+                        }
+                        Box(
+                            modifier = Modifier
+                                .background(Color.Red)
+                                .width(50.dp)
+                                .height(100.dp)
+                        )
+                        Box(
+                            modifier = Modifier
+                                .background(Color.Blue)
+                                .width(50.dp)
+                                .height(100.dp)
+                        )
+                    }
                 }
+
+            }
+            Column()
+            {
+                Text(text = "Ejemplo 41", modifier = Modifier.background(Color.Yellow))
+                Button(onClick = {
+                    isVisible = !isVisible
+                }) {
+                    Text(text = "ClickMe2 Animated")
+                }
+                Text(text = "Ejemplo 42", modifier = Modifier.background(Color.Red))
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = "ClickMe")
+                }
+                Image(
+                    painter = painterResource(id = R.drawable.ic_launcher_background),
+                    contentDescription = "employee Image"
+                )
             }
         }
     }
@@ -101,18 +142,21 @@ fun MyColumn(){
 fun MyBox(name: String) {
     //Text(text = "Hello $name!")
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Box(modifier = Modifier
-            .width(150.dp)
-            .height(100.dp)
-            //.padding(5.dp)
-            .background(Color.Cyan)
-            , contentAlignment = Alignment.Center)
+        Box(
+            modifier = Modifier
+                .width(150.dp)
+                .height(100.dp)
+                //.padding(5.dp)
+                .background(Color.Cyan), contentAlignment = Alignment.Center
+        )
         {
-            Box(modifier = Modifier
-                .background(Color.Yellow)
-                .width(120.dp)
-                .height(30.dp)
-                .padding(5.dp))
+            Box(
+                modifier = Modifier
+                    .background(Color.Yellow)
+                    .width(120.dp)
+                    .height(30.dp)
+                    .padding(5.dp)
+            )
             {
 
             }
