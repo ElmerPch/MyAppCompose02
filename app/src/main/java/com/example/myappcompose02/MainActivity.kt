@@ -1,9 +1,11 @@
 package com.example.myappcompose02
 //https://www.youtube.com/watch?v=6ZZDPILtYlA
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,7 +20,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.modifier.modifierLocalProvider
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -119,20 +125,28 @@ fun MyColumn() {
             }
             Column()
             {
-                Text(text = "Ejemplo 41", modifier = Modifier.background(Color.Yellow))
-                Button(onClick = {
-                    isVisible = !isVisible
-                }) {
-                    Text(text = "ClickMe2 Animated")
+                Canvas(modifier = Modifier
+                    .padding(20.dp)
+                    .size(300.dp)) {
+                    drawRect(
+                        Color.Black
+                    )
+                    drawRect(
+                        color = Color.Red,
+                        topLeft = Offset(100f, 50f),
+                        size = Size(150f, 150f),
+                        style = Stroke(
+                         width = 3f
+                        )
+                    )
+                    drawCircle(
+                        brush = Brush.radialGradient(
+                            colors= listOf(Color.Blue,Color.Green),
+                            center=center,
+                            radius=200f
+                        )
+                    )
                 }
-                Text(text = "Ejemplo 42", modifier = Modifier.background(Color.Red))
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "ClickMe")
-                }
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = "employee Image"
-                )
             }
         }
     }
