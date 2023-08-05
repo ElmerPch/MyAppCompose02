@@ -9,6 +9,8 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -83,6 +85,8 @@ fun MyColumn() {
                     painter = painterResource(id = R.drawable.ic_launcher_background),
                     contentDescription = "employee Image"
                 )
+
+
             }
             Column()
             {
@@ -147,6 +151,14 @@ fun MyColumn() {
                         )
                     )
                 }
+            }
+        }
+        LazyVerticalGrid(
+            modifier = Modifier.fillMaxSize(),
+            columns = GridCells.Adaptive(100.dp)
+        ) {
+            items(8) {
+                Sunflower()
             }
         }
     }
